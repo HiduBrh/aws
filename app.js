@@ -22,7 +22,7 @@ app.get('/user/:userId/:promo', function(req, res) {
 	var userId=req.params["userId"];
 	var promo=req.params["promo"]
 	var params = {
-		TableName: "users",
+		TableName: "user",
 		Key: {
 			"userId": userId,
 			"promo":promo
