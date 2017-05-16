@@ -4,8 +4,8 @@ var app = express();
 
 
 AWS.config.update({
-	region: process.env.DYNAMO_REGION,
-	endpoint: process.env.DYNAMO_ENDPOINT
+	region: process.env.DynamoDB_REGION//,
+	//endpoint: process.env.DYNAMO_ENDPOINT
 });
 
 app.get('/', function (req, res) {
@@ -17,12 +17,15 @@ app.get('/students', function (req, res) {
 
 });
 
-app.get('/user/:userId', function(req, res) {
+app.get('/user/:userId/:promo', function(req, res) {
 	var docClient = new AWS.DynamoDB.DocumentClient();
+	var userId=req.params["userId"];
+	var promo=req.params["promo"]
 	var params = {
 		TableName: "users",
 		Key: {
-			"userId": req.params["userId"]
+			"userId": userId,
+			"promo":promo
 		}
 	}
 	docClient.get(params, function(err,data) {
