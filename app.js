@@ -22,12 +22,12 @@ app.get('/user/:userId', function(req, res) {
 	var params = {
 		TableName: "users",
 		Key: {
-			"userId": req.params["userId"];
+			"userId": req.params["userId"]
 		}
 	}
 	docClient.get(params, function(err,data) {
 		if(err) {
-			res.send("Error while reading: " + JSON.stringify(err, nulln2));
+			res.send("Error while reading: " + JSON.stringify(err, null, n2));
 		} else {
 			res.send("Get item: " + JSON.stringify(data, null, 2));
 		}
